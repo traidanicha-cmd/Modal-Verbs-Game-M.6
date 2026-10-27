@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#5b4bdb">
+<title>Modal Verbs Quest | English Grammar Game</title>
+<style>
+:root{--ink:#202044;--muted:#656681;--purple:#5b4bdb;--pink:#ff6f91;--teal:#20bfa9;--gold:#ffbf47;--paper:#fff;--bg:#f3f4ff;--line:#e4e5f5}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;color:var(--ink);background:radial-gradient(circle at top left,#e6e1ff,transparent 36%),linear-gradient(135deg,#f6f7ff,#fff4f7);min-height:100vh}
+button,input{font:inherit}button{cursor:pointer;touch-action:manipulation}
+.wrap{max-width:980px;margin:auto;padding:18px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.brand{font-weight:900;letter-spacing:.3px;font-size:clamp(1rem,3vw,1.25rem)}.pill{background:#fff;border:1px solid var(--line);border-radius:99px;padding:8px 13px;font-size:.9rem;font-weight:700}
+.hero{background:linear-gradient(120deg,#5b4bdb,#8d5cf6 55%,#ff6f91);color:white;border-radius:28px;padding:clamp(22px,5vw,42px);box-shadow:0 18px 40px #5b4bdb28;position:relative;overflow:hidden}
+.hero:after{content:"✦";position:absolute;font-size:130px;right:6%;top:-25px;opacity:.15}.hero h1{font-size:clamp(2rem,6vw,3.5rem);line-height:1.05;margin:8px 0 12px}.hero p{max-width:650px;line-height:1.6;margin:0}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.tag{background:#ffffff25;border:1px solid #ffffff55;padding:7px 11px;border-radius:99px;font-size:.86rem}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:clamp(18px,4vw,30px);margin-top:16px;box-shadow:0 10px 30px #29245a0b}
+h2{margin:0 0 12px;font-size:1.4rem}.sub{color:var(--muted);line-height:1.55}.topics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}
+.topic{border:1px solid var(--line);border-radius:16px;padding:13px;background:#fbfbff}.topic b{display:block;margin-bottom:4px}.topic small{color:var(--muted);line-height:1.45;display:block}
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px}.field{flex:1;min-width:160px}.field label{display:block;font-weight:750;font-size:.9rem;margin-bottom:6px}.field input,.field select{width:100%;border:1px solid #d7d8ed;border-radius:12px;padding:12px;background:#fff;color:var(--ink)}
+.btn{border:0;border-radius:14px;padding:13px 18px;font-weight:850;transition:transform .12s,filter .12s}.btn:active{transform:scale(.98)}.primary{background:var(--purple);color:#fff}.secondary{background:#efedff;color:var(--purple)}.quiet{background:#f2f3fa;color:var(--ink)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.hidden{display:none!important}.game-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.stats{display:flex;gap:8px;flex-wrap:wrap}.stat{background:#f5f4ff;padding:8px 11px;border-radius:12px;font-weight:800;font-size:.9rem}.progress{height:9px;background:#eeeefa;border-radius:99px;overflow:hidden;margin:15px 0 22px}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--teal),#72d9ca);width:0;transition:width .25s}
+.qnum{color:var(--purple);font-size:.88rem;font-weight:900;letter-spacing:1px;text-transform:uppercase}.question{font-size:clamp(1.25rem,3.5vw,1.8rem);font-weight:850;line-height:1.35;margin:10px 0 20px}.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.answer{background:#fff;border:2px solid var(--line);border-radius:16px;padding:15px;text-align:left;font-weight:750;min-height:62px;color:var(--ink);display:flex;gap:10px;align-items:center}.answer .letter{display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:9px;background:#f0efff;color:var(--purple);font-weight:900}.answer:hover:not(:disabled){border-color:#aaa0ff;background:#faf9ff}.answer.correct{border-color:#20bfa9;background:#eafffa}.answer.correct .letter{background:#20bfa9;color:white}.answer.wrong{border-color:#ff6f91;background:#fff0f4}.answer.wrong .letter{background:#ff6f91;color:white}
+.feedback{margin-top:14px;padding:13px 15px;border-radius:14px;line-height:1.5}.feedback.good{background:#eafffa;color:#126b5f}.feedback.bad{background:#fff0f4;color:#9c2948}.game-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.result-score{font-size:clamp(2.8rem,9vw,5rem);font-weight:950;color:var(--purple);line-height:1}.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}.result-box{background:#f7f6ff;border-radius:16px;padding:14px;text-align:center}.result-box strong{display:block;font-size:1.4rem}.result-box small{color:var(--muted)}
+.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:320px}th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:.85rem}td:first-child{font-weight:800}
+.note{font-size:.85rem;color:var(--muted);line-height:1.55}.footer{text-align:center;color:var(--muted);font-size:.82rem;padding:20px 0}
+@media(max-width:600px){.wrap{padding:11px}.topics{grid-template-columns:1fr}.answers{grid-template-columns:1fr}.answer{min-height:56px}.result-grid{grid-template-columns:1fr 1fr}.result-box:last-child{grid-column:1/-1}.hero{border-radius:22px}.panel{border-radius:20px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><div class="brand">🚀 MODAL VERBS QUEST</div><div class="pill">📱 Mobile · Tablet · Laptop</div></header>
+  <section class="hero">
+    <div style="font-weight:850;opacity:.9">ENGLISH GRAMMAR • PLAY & LEARN</div>
+    <h1>Modal Verbs<br>Challenge!</h1>
+    <p>พิชิตภารกิจ Modal Verbs ฝึกเลือกใช้คำกริยาช่วยให้ถูกต้อง พร้อมเฉลยทันที คะแนนอัตโนมัติ และจับเวลา</p>
+    <div class="tags"><span class="tag">🎯 4 หัวข้อ</span><span class="tag">⏱️ จับเวลา</span><span class="tag">⭐ คะแนนสะสม</span><span class="tag">🏆 Leaderboard</span></div>
+  </section>
+
+  <section id="startPanel" class="panel">
+    <h2>ก่อนเริ่มภารกิจ</h2>
+    <p class="sub">เลือกจำนวนข้อและเวลา แล้วตอบคำถามให้ได้มากที่สุด แต่ละข้อมีคำตอบที่ถูกที่สุดเพียงข้อเดียว</p>
+    <div class="topics">
+      <div class="topic"><b>💪 Ability</b><small>can / can't — ความสามารถในปัจจุบัน</small></div>
+      <div class="topic"><b>🕰️ Past Ability</b><small>could / couldn't, was/were able to — ความสามารถในอดีต</small></div>
+      <div class="topic"><b>📌 Obligation & Prohibition</b><small>must / have to / mustn't / don't have to — หน้าที่และข้อห้าม</small></div>
+      <div class="topic"><b>📜 Past Obligation</b><small>had to / didn't have to — หน้าที่ในอดีต</small></div>
+    </div>
+    <div class="controls">
+      <div class="field"><label for="playerName">ชื่อผู้เล่น (ใช้แสดงในตารางคะแนน)</label><input id="playerName" maxlength="20" placeholder="เช่น Student 01"></div>
+      <div class="field"><label for="questionCount">จำนวนคำถาม</label><select id="questionCount"><option value="10">10 ข้อ</option><option value="15" selected>15 ข้อ</option><option value="20">20 ข้อ</option></select></div>
+      <div class="field"><label for="timeLimit">เวลาทั้งหมด</label><select id="timeLimit"><option value="90">90 วินาที</option><option value="150" selected>150 วินาที</option><option value="240">240 วินาที</option><option value="0">ไม่จำกัดเวลา</option></select></div>
+    </div>
+    <div class="controls"><button class="btn primary" id="startBtn">เริ่มเล่นเลย ▶</button><button class="btn secondary" id="leaderBtn">🏆 ดู Leaderboard</button><button class="btn quiet" id="rulesBtn">วิธีเล่น</button></div>
+    <div id="rules" class="feedback hidden">เลือกคำตอบ A–D ให้ถูกต้อง ตอบถูกได้ 10 คะแนน และตอบเร็วจะได้โบนัสเล็กน้อย ระบบจะแสดงเฉลยหลังตอบแต่ละข้อ เมื่อจบเกมสามารถบันทึกคะแนนลง Leaderboard ของอุปกรณ์นี้ได้</div>
+  </section>
+
+  <section id="gamePanel" class="panel hidden">
+    <div class="game-head"><div class="stats"><span class="stat" id="scoreStat">⭐ คะแนน 0</span><span class="stat" id="timerStat">⏱️ 02:30</span></div><span class="stat" id="streakStat">🔥 ต่อเนื่อง 0</span></div>
+    <div class="progress"><span id="progressBar"></span></div>
+    <div class="qnum" id="qNum">QUESTION 1 / 15</div>
+    <div class="question" id="questionText"></div>
+    <div class="answers" id="answerList"></div>
+    <div id="feedback" class="feedback hidden" aria-live="polite"></div>
+    <div class="game-bottom"><span class="note" id="categoryLabel"></span><button class="btn primary" id="nextBtn" disabled>ข้อต่อไป →</button></div>
+  </section>
+
+  <section id="resultPanel" class="panel hidden">
+    <div class="qnum">MISSION COMPLETE</div><h2 id="resultTitle">เยี่ยมมาก!</h2><div class="result-score" id="finalScore">0</div><div class="sub">คะแนนรวม</div>
+    <div class="result-grid"><div class="result-box"><strong id="correctCount">0/15</strong><small>ตอบถูก</small></div><div class="result-box"><strong id="accuracy">0%</strong><small>ความแม่นยำ</small></div><div class="result-box"><strong id="timeUsed">0s</strong><small>เวลาที่ใช้</small></div></div>
+    <p id="resultMessage" class="sub"></p>
+    <div class="controls"><button class="btn primary" id="saveBtn">บันทึกคะแนน 🏆</button><button class="btn secondary" id="againBtn">เล่นอีกครั้ง ↻</button><button class="btn quiet" id="resultLeaderBtn">ดู Leaderboard</button></div>
+    <p id="saveStatus" class="note"></p>
+  </section>
+
+  <section id="leaderPanel" class="panel hidden">
+    <div class="game-head"><h2>🏆 Leaderboard</h2><button class="btn quiet" id="clearBoardBtn">ล้างคะแนนในเครื่องนี้</button></div>
+    <p class="sub">ตารางคะแนนบันทึกไว้ในเบราว์เซอร์ของอุปกรณ์ที่เล่น ไม่ได้รวมคะแนนข้ามเครื่องโดยอัตโนมัติ</p>
+    <div class="table-wrap"><table><thead><tr><th>อันดับ</th><th>ผู้เล่น</th><th>คะแนน</th><th>ความแม่นยำ</th><th>วันที่</th></tr></thead><tbody id="leaderRows"></tbody></table></div>
+    <div class="controls"><button class="btn secondary" id="backBtn">← กลับหน้าหลัก</button></div>
+  </section>
+  <div class="footer">Modal Verbs Quest • Learning English through play ✨</div>
+</div>
+<script>
+const questions = [
+{c:"Ability",q:"My little sister ___ swim very well. She learned last year.",a:["can","must","had to","should"],k:0,e:"ใช้ can เพื่อบอกความสามารถในปัจจุบัน"},
+{c:"Ability",q:"I ___ speak Japanese, so I can help you translate this sign.",a:["can't","can","mustn't","had to"],k:1,e:"ใช้ can + verb ช่อง 1 เพื่อบอกว่าทำได้"},
+{c:"Ability",q:"Sorry, I ___ hear you. The music is too loud.",a:["can","can't","have to","could"],k:1,e:"สถานการณ์ปัจจุบันที่ไม่ได้ยิน ใช้ can't"},
+{c:"Ability",q:"Which sentence expresses present ability?",a:["You must wear a helmet.","I can play the guitar.","We had to leave early.","You mustn't run here."],k:1,e:"I can play the guitar. = ฉันเล่นกีตาร์ได้"},
+{c:"Ability",q:"Birds ___ fly, but penguins cannot.",a:["can","had to","mustn't","didn't have to"],k:0,e:"can ใช้บอกความสามารถทั่วไป"},
+{c:"Past Ability",q:"When I was five, I ___ ride a bicycle.",a:["can","could","must","have to"],k:1,e:"could ใช้บอกความสามารถทั่วไปในอดีต"},
+{c:"Past Ability",q:"She was very ill yesterday, so she ___ get out of bed.",a:["could","can","couldn't","must"],k:2,e:"couldn't = ไม่สามารถทำได้ในอดีต"},
+{c:"Past Ability",q:"After many lessons, Tom ___ finally able to drive last month.",a:["is","was","were","be"],k:1,e:"โครงสร้าง was able to ใช้กับประธานเอกพจน์ในอดีต"},
+{c:"Past Ability",q:"Choose the correct sentence about past ability.",a:["I can swim when I was six.","I could swim when I was six.","I must swim when I was six.","I have to swim when I was six."],k:1,e:"ใช้ could + verb ช่อง 1 เพื่อบอกความสามารถในอดีต"},
+{c:"Past Ability",q:"They ___ finish the difficult puzzle yesterday after trying for an hour.",a:["were able to","are able to","can","mustn't"],k:0,e:"were able to เน้นว่าทำสำเร็จในเหตุการณ์เฉพาะในอดีต"},
+{c:"Obligation & Prohibition",q:"Students ___ wear their school uniforms on weekdays. It is a school rule.",a:["mustn't","have to","couldn't","didn't have to"],k:1,e:"have to ใช้บอกหน้าที่หรือกฎที่ต้องปฏิบัติ"},
+{c:"Obligation & Prohibition",q:"You ___ use your phone during the exam. It is forbidden.",a:["must","mustn't","have to","could"],k:1,e:"mustn't หมายถึง ห้ามทำ"},
+{c:"Obligation & Prohibition",q:"You look tired. You ___ finish all the work tonight; tomorrow is fine.",a:["mustn't","don't have to","can't","had to"],k:1,e:"don't have to = ไม่จำเป็นต้องทำ"},
+{c:"Obligation & Prohibition",q:"Which sign means prohibition?",a:["You must wear a seat belt.","You have to be quiet.","You mustn't feed the animals.","You don't have to bring food."],k:2,e:"mustn't ใช้แสดงข้อห้าม"},
+{c:"Obligation & Prohibition",q:"At this library, visitors ___ keep quiet.",a:["must","mustn't","couldn't","didn't have to"],k:0,e:"must + verb ช่อง 1 ใช้แสดงหน้าที่หรือกฎ"},
+{c:"Obligation & Prohibition",q:"You ___ touch that wire. It may be dangerous.",a:["must","mustn't","have to","could"],k:1,e:"เมื่อเป็นข้อห้าม ใช้ mustn't"},
+{c:"Obligation & Prohibition",q:"I ___ get up early tomorrow because my train leaves at 6 a.m.",a:["have to","mustn't","couldn't","didn't have to"],k:0,e:"have to ใช้บอกความจำเป็น"},
+{c:"Past Obligation",q:"Yesterday, we ___ clean the classroom after school.",a:["have to","had to","mustn't","can"],k:1,e:"had to เป็นรูปอดีตของ have to"},
+{c:"Past Obligation",q:"I ___ wear a uniform at my old school, but my new school has no uniform.",a:["had to","have to","mustn't","can"],k:0,e:"had to บอกหน้าที่ในอดีต"},
+{c:"Past Obligation",q:"We ___ hurry because the meeting was cancelled.",a:["had to","didn't have to","mustn't","could"],k:1,e:"didn't have to = ไม่จำเป็นต้องทำในอดีต"},
+{c:"Past Obligation",q:"Choose the correct past obligation sentence.",a:["She has to visit the dentist yesterday.","She had to visit the dentist yesterday.","She mustn't visit the dentist yesterday.","She can visit the dentist yesterday."],k:1,e:"had to + verb ช่อง 1 ใช้กับหน้าที่ในอดีต"},
+{c:"Past Obligation",q:"They ___ pay for the tickets because their teacher had already bought them.",a:["didn't have to","mustn't","don't have to","can't"],k:0,e:"didn't have to หมายถึงไม่จำเป็นต้องจ่ายในอดีต"},
+{c:"Past Obligation",q:"Last week, Mark ___ submit his project by Friday.",a:["has to","had to","mustn't","can"],k:1,e:"Last week เป็นเวลาอดีต จึงใช้ had to"},
+{c:"Ability",q:"Choose the correct negative form for present ability.",a:["I don't can dance.","I can't dance.","I mustn't dance.","I didn't have to dance."],k:1,e:"รูปปฏิเสธของ can คือ cannot/can't"},
+{c:"Past Ability",q:"When my grandmother was young, she ___ run very fast.",a:["can","could","has to","mustn't"],k:1,e:"could ใช้บอกความสามารถในอดีต"},
+{c:"Obligation & Prohibition",q:"You ___ bring a calculator; the test provides one for everyone.",a:["mustn't","don't have to","had to","couldn't"],k:1,e:"ไม่จำเป็นต้องนำมา ใช้ don't have to"},
+{c:"Past Obligation",q:"Did you ___ work late last night?",a:["had to","have to","must","has to"],k:1,e:"คำถามในอดีตใช้ Did + subject + have to + verb"},
+{c:"Past Obligation",q:"We didn't have to ___ our own lunch yesterday.",a:["brought","bringing","bring","brings"],k:2,e:"หลัง didn't have to ใช้กริยาช่อง 1"},
+{c:"Ability",q:"Which sentence means 'ฉันไม่สามารถเปิดประตูได้'?",a:["I mustn't open the door.","I couldn't open the door yesterday.","I can't open the door.","I don't have to open the door."],k:2,e:"can't บอกความไม่สามารถในปัจจุบัน"},
+{c:"Past Ability",q:"The team practiced hard and ___ win the match yesterday.",a:["was able to","is able to","can","mustn't"],k:0,e:"was able to ใช้กับประธานเอกพจน์และเหตุการณ์สำเร็จในอดีต"}
+];
+const $=id=>document.getElementById(id);
+let deck=[],idx=0,score=0,correct=0,streak=0,remaining=150,timerId=null,startedAt=0,endedAt=0,answered=false,player="Student",gameOver=false;
+const panels=["startPanel","gamePanel","resultPanel","leaderPanel"];
+function showPanel(id){panels.forEach(p=>$(p).classList.toggle("hidden",p!==id));}
+function shuffle(arr){let a=arr.slice();for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function startGame(){
+ player=$("playerName").value.trim()||"Student"; const n=Number($("questionCount").value); remaining=Number($("timeLimit").value); deck=shuffle(questions).slice(0,n); idx=0;score=0;correct=0;streak=0;answered=false;gameOver=false;startedAt=Date.now();showPanel("gamePanel");renderQuestion();updateStats();clearInterval(timerId);
+ if(remaining>0){timerId=setInterval(()=>{remaining--;updateStats();if(remaining<=0){remaining=0;updateStats();finishGame(true);}},1000);}else{$("timerStat").textContent="⏱️ ไม่จำกัด";}
+}
+function updateStats(){$("scoreStat").textContent="⭐ คะแนน "+score;$("timerStat").textContent="⏱️ "+formatTime(remaining);$("streakStat").textContent="🔥 ต่อเนื่อง "+streak;}
+function formatTime(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");}
+function renderQuestion(){
+ if(idx>=deck.length){finishGame(false);return;}answered=false;const q=deck[idx];$("qNum").textContent=`QUESTION ${idx+1} / ${deck.length}`;$("questionText").textContent=q.q;$("categoryLabel").textContent="หมวด: "+q.c;$("progressBar").style.width=(idx/deck.length*100)+"%";$("feedback").classList.add("hidden");$("nextBtn").disabled=true;$("nextBtn").textContent=idx===deck.length-1?"ดูผลคะแนน →":"ข้อต่อไป →";
+ const list=$("answerList");list.innerHTML="";let choices=q.a.map((text,i)=>({text,correct:i===q.k}));choices=shuffle(choices);
+ choices.forEach((choice,i)=>{const b=document.createElement("button");b.className="answer";b.innerHTML=`<span class="letter">${"ABCD"[i]}</span><span></span>`;b.querySelector("span:last-child").textContent=choice.text;b.addEventListener("click",()=>chooseAnswer(b,choice,choices));list.appendChild(b);});
+}
+function chooseAnswer(btn,choice,choices){
+ if(answered||gameOver)return;answered=true;const q=deck[idx];const buttons=[...$("answerList").querySelectorAll("button")];buttons.forEach((b,i)=>{b.disabled=true;if(choices[i].correct)b.classList.add("correct");});let msg="";
+ if(choice.correct){correct++;streak++;let bonus=remaining>0?Math.min(5,Math.floor(remaining/30)):0;score+=10+bonus;msg="✅ ถูกต้อง! +"+(10+bonus)+" คะแนน — "+q.e;$("feedback").className="feedback good";}
+ else{streak=0;btn.classList.add("wrong");msg="❌ ยังไม่ถูก คำตอบที่ถูกคือ “"+q.a[q.k]+"” — "+q.e;$("feedback").className="feedback bad";}
+ $("feedback").textContent=msg;$("feedback").classList.remove("hidden");$("progressBar").style.width=((idx+1)/deck.length*100)+"%";$("nextBtn").disabled=false;updateStats();
+}
+function finishGame(timeUp){
+ if(gameOver)return;gameOver=true;clearInterval(timerId);endedAt=Date.now();showPanel("resultPanel");$("finalScore").textContent=score;$("correctCount").textContent=correct+"/"+deck.length;$("accuracy").textContent=Math.round(correct/deck.length*100)+"%";const elapsed=Math.round((endedAt-startedAt)/1000);$("timeUsed").textContent=elapsed+"s";$("resultTitle").textContent=timeUp?"หมดเวลา!":"ภารกิจสำเร็จ!";
+ $("resultMessage").textContent= timeUp?"หมดเวลาแล้ว ลองเล่นอีกครั้งเพื่อเพิ่มคะแนนได้เลย":correct/deck.length>=.8?"ยอดเยี่ยม! เข้าใจ Modal Verbs ได้ดีมาก 🎉":correct/deck.length>=.5?"ทำได้ดี! ทบทวนเฉลยและลองอีกครั้งเพื่อพัฒนาคะแนน":"อย่าเพิ่งท้อ ลองทบทวนคำอธิบายแล้วเล่นใหม่อีกครั้งนะ";$("saveStatus").textContent="";$("saveBtn").disabled=false;
+}
+function readBoard(){try{return JSON.parse(localStorage.getItem("modalQuestBoard")||"[]");}catch(e){return[];}}
+function saveScore(){const board=readBoard();board.push({name:player,score,accuracy:Math.round(correct/deck.length*100),date:new Date().toLocaleDateString("th-TH"),stamp:Date.now()});board.sort((a,b)=>b.score-a.score||b.accuracy-a.accuracy||a.stamp-b.stamp);localStorage.setItem("modalQuestBoard",JSON.stringify(board.slice(0,50)));$("saveBtn").disabled=true;$("saveStatus").textContent="บันทึกคะแนนลงในอุปกรณ์นี้แล้ว ✓";renderBoard();}
+function renderBoard(){const board=readBoard();const tbody=$("leaderRows");tbody.innerHTML="";if(!board.length){const tr=document.createElement("tr"),td=document.createElement("td");td.colSpan=5;td.textContent="ยังไม่มีคะแนน ลองเล่นเกมก่อนนะ!";tr.appendChild(td);tbody.appendChild(tr);return;}board.slice(0,20).forEach((r,i)=>{const tr=document.createElement("tr");[i+1,r.name,r.score,r.accuracy+"%",r.date].forEach(v=>{const td=document.createElement("td");td.textContent=v;tr.appendChild(td);});tbody.appendChild(tr);});}
+$("startBtn").addEventListener("click",startGame);$("rulesBtn").addEventListener("click",()=>$("rules").classList.toggle("hidden"));$("leaderBtn").addEventListener("click",()=>{renderBoard();showPanel("leaderPanel")});$("resultLeaderBtn").addEventListener("click",()=>{renderBoard();showPanel("leaderPanel")});$("backBtn").addEventListener("click",()=>showPanel("startPanel"));$("againBtn").addEventListener("click",startGame);$("saveBtn").addEventListener("click",saveScore);$("nextBtn").addEventListener("click",()=>{if(!answered)return;idx++;renderQuestion()});$("clearBoardBtn").addEventListener("click",()=>{if(confirm("ต้องการล้างคะแนนทั้งหมดในเบราว์เซอร์นี้หรือไม่?")){localStorage.removeItem("modalQuestBoard");renderBoard();}});
+</script>
+</body>
+</html>
